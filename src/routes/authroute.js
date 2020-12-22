@@ -44,6 +44,7 @@ const AuthStack = () => {
         //   },
         // })}
       />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };

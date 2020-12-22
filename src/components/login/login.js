@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, View} from 'react-native';
-import Formik from 'formik';
+import {Formik} from 'formik';
+import {Input, Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {AuthContext} from '../../routes/authprovider';
 
 const Login = ({navigation}) => {
+  const {login} = useContext(AuthContext);
   const onSubmit = (values) => {
     console.log(values);
+    login(values.email, values.password);
   };
   return (
     <View>
       <Formik
-        initialValues={({email: ''}, {password: ''})}
+        initialValues={({name: ''}, {email: ''}, {password: ''}, {phone: ''})}
         onSubmit={(values) => onSubmit(values)}>
         {({handleChange, handleBlur, handleSubmit, values}) => (
           <View>
@@ -30,10 +35,14 @@ const Login = ({navigation}) => {
               onBlur={handleBlur('password')}
               value={values.password}
             />
+
             <Button onPress={handleSubmit} title="Submit" />
           </View>
         )}
       </Formik>
+      <View>
+        <Button title="SignUp" onPress={() => navigation.navigate('Signup')} />
+      </View>
     </View>
   );
 };
