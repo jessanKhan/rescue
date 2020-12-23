@@ -29,20 +29,18 @@ const SaveEnvironment = ({navigation}) => {
   };
 
   return (
-    <ScrollView style={styles.htmlContainer}>
-      <WebView
-        source={{uri: original_url}}
-        // onShouldStartLoadWithRequest={request => {
-        //   // Only allow navigating within this website
-        //   return request.url.startsWith(original_url);
-        // }}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        renderLoading={ActivityIndicatorLoadingView}
-        startInLoadingState={true}
-      />
-      <Text>Hello Article</Text>
-    </ScrollView>
+    // <ScrollView style={styles.htmlContainer}>
+    <WebView
+      source={{uri: original_url}}
+      // onShouldStartLoadWithRequest={(request) => {
+      //   // Only allow navigating within this website
+      //   return request.url.startsWith(original_url);
+      // }}
+      javaScriptEnabled={true}
+      domStorageEnabled={true}
+      renderLoading={ActivityIndicatorLoadingView}
+      startInLoadingState={true}
+    />
   );
 };
 

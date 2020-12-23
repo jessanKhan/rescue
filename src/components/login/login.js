@@ -35,13 +35,33 @@ const Login = ({navigation}) => {
               onBlur={handleBlur('password')}
               value={values.password}
             />
-
-            <Button onPress={handleSubmit} title="Submit" />
+            <View
+              style={{
+                width: 200,
+                height: 60,
+                marginTop: 30,
+                alignSelf: 'center',
+              }}>
+              <Button onPress={handleSubmit} title="Login" />
+            </View>
           </View>
         )}
       </Formik>
-      <View>
-        <Button title="SignUp" onPress={() => navigation.navigate('Signup')} />
+      <View
+        style={{
+          // flexDirection: 'column',
+          justifyContent: 'center',
+          width: 200,
+          height: 60,
+          marginTop: 30,
+          alignSelf: 'center',
+        }}>
+        <Text> Dont have any account? </Text>
+        <Button
+          type="outline"
+          title="SignUp"
+          onPress={() => navigation.navigate('Signup')}
+        />
       </View>
     </View>
   );
