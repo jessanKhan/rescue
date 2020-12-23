@@ -8,6 +8,8 @@ target 'rescue' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
   target 'rescueTests' do
     inherit! :complete
     # Pods for testing
