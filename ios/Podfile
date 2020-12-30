@@ -10,6 +10,8 @@ target 'rescue' do
 
   pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
+  pod 'RNSoundLevel', :path => '../node_modules/react-native-sound-level-foreground'
+
   target 'rescueTests' do
     inherit! :complete
     # Pods for testing

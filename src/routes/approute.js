@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -11,7 +11,8 @@ import Home from '../components/home/home';
 import Weather from '../screens/weather/weather';
 import Profile from '../screens/profile/profile';
 import SaveEnvironment from '../screens/articles/article';
-import Logout from '../components/logout/logout';
+// import Logout from '../components/logout/logout';
+import SoundCheck from '../screens/soundCheck/soundCheck';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -44,6 +45,37 @@ const HomeStack = ({navigation}) => (
     />
   </Stack.Navigator>
 );
+
+const WeatherStack = ({navigation}) => {
+  return (
+    <Stack.Navigator
+      options={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: '#2e64e5',
+          fontFamily: 'Kufam-SemiBoldItalic',
+          fontSize: 18,
+        },
+        headerStyle: {
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}>
+      <Stack.Screen
+        name="Weather"
+        component={Weather}
+        options={{
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={25}
+              onPress={() => navigation.openDrawer()}></Icon>
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const ProfileStack = ({navigation}) => (
   <Stack.Navigator
@@ -140,7 +172,7 @@ const AppStack = ({navigation}) => (
     />
     <Drawer.Screen
       name="Weather"
-      component={Weather}
+      component={WeatherStack}
       options={{
         title: 'Weather Info',
         drawerIcon: ({focused, size}) => (
@@ -162,13 +194,28 @@ const AppStack = ({navigation}) => (
         ),
       }}
     />
-    <Drawer.Screen
+    {/* <Drawer.Screen
       name="Logout"
       component={Logout}
       options={{
         title: 'Logout',
         drawerIcon: ({focused, size}) => (
           <Icon name="exit" size={35} color={focused ? '#7cc' : '#ccc'} />
+        ),
+      }}
+    /> */}
+
+    <Drawer.Screen
+      name="Sound"
+      component={SoundCheck}
+      options={{
+        title: 'Sound Polution',
+        drawerIcon: ({focused, size}) => (
+          <Icon
+            name="mic-circle-outline"
+            size={35}
+            color={focused ? '#7cc' : '#ccc'}
+          />
         ),
       }}
     />
