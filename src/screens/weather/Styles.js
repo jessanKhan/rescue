@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   current_weather_contant: {
     flexDirection: 'row',
     width: '100%',
-    height: '80%',
+    height: '40%',
   },
   current_weather_status: {
     flexDirection: 'column',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   current_weather_status_text_A: {
-    fontSize: 70,
+    fontSize: 60,
     color: '#37474F',
   },
   current_weather_status_text_B: {
