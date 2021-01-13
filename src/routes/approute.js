@@ -10,9 +10,14 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Home from '../components/home/home';
 import Weather from '../screens/weather/weather';
 import Profile from '../screens/profile/profile';
+import ProfileInfo from '../screens/profile/profileinfo';
 import SaveEnvironment from '../screens/articles/article';
 // import Logout from '../components/logout/logout';
 import SoundCheck from '../screens/soundCheck/soundCheck';
+import Volunteer from '../screens/volunteer/volunteer';
+import VolunteerRegister from '../screens/volunteer/volunteerRegister';
+import VolunteerList from '../screens/volunteer/volunteerList';
+import VolunteerNear from '../screens/volunteer/volunteerNear';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -79,6 +84,7 @@ const WeatherStack = ({navigation}) => {
 
 const ProfileStack = ({navigation}) => (
   <Stack.Navigator
+    initialRouteName="Profile"
     options={{
       headerLeft: () => (
         <Icon.Button
@@ -107,6 +113,76 @@ const ProfileStack = ({navigation}) => (
             size={25}
             onPress={() => navigation.openDrawer()}></Icon>
         ),
+      }}
+    />
+    <Stack.Screen
+      name="ProfileInfo"
+      component={ProfileInfo}
+      options={{
+        title: 'Profile Details',
+        // headerLeft: () => (
+        //   <Icon
+        //     name="menu"
+        //     size={25}
+        //     onPress={() => navigation.goBack()}></Icon>
+        // ),
+      }}
+    />
+  </Stack.Navigator>
+);
+
+const VolunteerStack = ({navigation}) => (
+  <Stack.Navigator
+    initialRouteName="Profile"
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="ios-menu"
+          backgroundColor="#696969"
+          size={25}></Icon.Button>
+      ),
+      headerTitleAlign: 'center',
+      headerTitleStyle: {
+        color: '#2e64e5',
+        fontFamily: 'Kufam-SemiBoldItalic',
+        fontSize: 18,
+      },
+      headerStyle: {
+        shadowColor: '#fff',
+        elevation: 0,
+      },
+    }}>
+    <Stack.Screen
+      name="Volunteer"
+      component={Volunteer}
+      options={{
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={25}
+            onPress={() => navigation.openDrawer()}></Icon>
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="VolunteerRegister"
+      component={VolunteerRegister}
+      options={{
+        title: 'Register Volunteer',
+      }}
+    />
+    <Stack.Screen
+      name="VolunteerList"
+      component={VolunteerList}
+      options={{
+        title: 'Registerd Volunteers',
+      }}
+    />
+    <Stack.Screen
+      name="VolunteerNear"
+      component={VolunteerNear}
+      options={{
+        title: 'Volunteer Near Me',
       }}
     />
   </Stack.Navigator>
@@ -194,16 +270,16 @@ const AppStack = ({navigation}) => (
         ),
       }}
     />
-    {/* <Drawer.Screen
-      name="Logout"
-      component={Logout}
+    <Drawer.Screen
+      name="Volunteer"
+      component={VolunteerStack}
       options={{
-        title: 'Logout',
+        title: 'Volunteers',
         drawerIcon: ({focused, size}) => (
-          <Icon name="exit" size={35} color={focused ? '#7cc' : '#ccc'} />
+          <Icon name="help-buoy" size={35} color={focused ? '#7cc' : '#ccc'} />
         ),
       }}
-    /> */}
+    />
 
     <Drawer.Screen
       name="Sound"

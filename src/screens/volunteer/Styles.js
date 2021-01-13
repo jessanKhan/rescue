@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#DCDCDC',
-    height: '50%',
+    height: '33%',
   },
   headerContent: {
     padding: 30,
@@ -40,11 +40,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     paddingLeft: 5,
+    paddingBottom: 5,
+    // borderBottomWidth: 1,
   },
   iconContent: {
     flex: 1,
     alignItems: 'flex-end',
     paddingRight: 5,
+    paddingBottom: 5,
   },
   icon: {
     width: 30,

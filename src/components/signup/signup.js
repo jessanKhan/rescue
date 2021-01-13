@@ -17,18 +17,10 @@ const SignUp = ({navigation}) => {
   return (
     <View>
       <Formik
-        initialValues={({name: ''}, {email: ''}, {password: ''}, {phone: ''})}
+        initialValues={({email: ''}, {password: ''})}
         onSubmit={(values) => onSubmit(values)}>
         {({handleChange, handleBlur, handleSubmit, values}) => (
           <View>
-            <Input
-              placeholder="Name"
-              leftIcon={<Icon name="user" size={24} color="black" />}
-              // style={styles}
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
-              value={values.name}
-            />
             <Input
               placeholder="Email"
               leftIcon={<Icon name="envelope-open" size={24} color="black" />}
@@ -46,13 +38,7 @@ const SignUp = ({navigation}) => {
               onBlur={handleBlur('password')}
               value={values.password}
             />
-            <Input
-              placeholder="Phone"
-              leftIcon={<Icon name="mobile" size={24} color="black" />}
-              onChangeText={handleChange('phone')}
-              onBlur={handleBlur('phone')}
-              value={values.address}
-            />
+
             <View
               style={{
                 width: 200,
