@@ -18,6 +18,8 @@ import Volunteer from '../screens/volunteer/volunteer';
 import VolunteerRegister from '../screens/volunteer/volunteerRegister';
 import VolunteerList from '../screens/volunteer/volunteerList';
 import VolunteerNear from '../screens/volunteer/volunteerNear';
+import WorldDays from '../screens/worldDays/worldDays';
+import WorldDayDetails from '../screens/worldDays/worldDayDetail';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -224,6 +226,49 @@ const SaveEnvironmentStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
+const WorldDayStack = ({navigation}) => (
+  <Stack.Navigator
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="ios-menu"
+          backgroundColor="#696969"
+          size={25}></Icon.Button>
+      ),
+      headerTitleAlign: 'center',
+      headerTitleStyle: {
+        color: '#2e64e5',
+        fontFamily: 'Kufam-SemiBoldItalic',
+        fontSize: 18,
+      },
+      headerStyle: {
+        shadowColor: '#fff',
+        elevation: 0,
+      },
+    }}>
+    <Stack.Screen
+      name="WorldDays"
+      component={WorldDays}
+      options={{
+        title: 'World Environmental Days',
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={25}
+            onPress={() => navigation.openDrawer()}></Icon>
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="WorldDaysDetails"
+      component={WorldDayDetails}
+      options={{
+        title: 'World Environmental Days',
+      }}
+    />
+  </Stack.Navigator>
+);
+
 const AppStack = ({navigation}) => (
   <Drawer.Navigator initialRouteName="Home">
     <Drawer.Screen
@@ -267,6 +312,16 @@ const AppStack = ({navigation}) => (
         title: 'Save Environment',
         drawerIcon: ({focused, size}) => (
           <Icon name="book" size={35} color={focused ? '#7cc' : '#ccc'} />
+        ),
+      }}
+    />
+    <Drawer.Screen
+      name="ArticleDays"
+      component={WorldDayStack}
+      options={{
+        title: 'World Environment',
+        drawerIcon: ({focused, size}) => (
+          <Icon name="globe" size={35} color={focused ? '#7cc' : '#ccc'} />
         ),
       }}
     />
