@@ -66,10 +66,27 @@
 // };
 
 // export default App;
-import React from 'react';
+import React, {useEffect} from 'react';
 import Providers from './src/routes/index';
+import messaging from '@react-native-firebase/messaging';
+
 
 const App = () => {
+  const cloudMessegging = async () => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  };
+
+  useEffect(() => {
+    cloudMessegging();
+  });
+
   return <Providers />;
 };
 

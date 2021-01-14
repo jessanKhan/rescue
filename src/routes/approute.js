@@ -20,6 +20,10 @@ import VolunteerList from '../screens/volunteer/volunteerList';
 import VolunteerNear from '../screens/volunteer/volunteerNear';
 import WorldDays from '../screens/worldDays/worldDays';
 import WorldDayDetails from '../screens/worldDays/worldDayDetail';
+import Helpline from '../screens/helpline/helpline';
+import DisasterKit from '../screens/disasterkit/disasterkit';
+import EmergencyContact from '../screens/emergencycontact/emegencycontact';
+import AddEmergencyContact from '../screens/emergencycontact/addemegencycontact';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -226,6 +230,42 @@ const SaveEnvironmentStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
+const HelpLineStack = ({navigation}) => (
+  <Stack.Navigator
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="ios-menu"
+          backgroundColor="#696969"
+          size={25}></Icon.Button>
+      ),
+      headerTitleAlign: 'center',
+      headerTitleStyle: {
+        color: '#2e64e5',
+        fontFamily: 'Kufam-SemiBoldItalic',
+        fontSize: 18,
+      },
+      headerStyle: {
+        shadowColor: '#fff',
+        elevation: 0,
+      },
+    }}>
+    <Stack.Screen
+      name="HelpLine"
+      component={Helpline}
+      options={{
+        title: 'Help Line',
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={25}
+            onPress={() => navigation.openDrawer()}></Icon>
+        ),
+      }}
+    />
+  </Stack.Navigator>
+);
+
 const WorldDayStack = ({navigation}) => (
   <Stack.Navigator
     options={{
@@ -264,6 +304,91 @@ const WorldDayStack = ({navigation}) => (
       component={WorldDayDetails}
       options={{
         title: 'World Environmental Days',
+      }}
+    />
+  </Stack.Navigator>
+);
+
+const DisasterKitStack = ({navigation}) => (
+  <Stack.Navigator
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="ios-menu"
+          backgroundColor="#696969"
+          size={25}></Icon.Button>
+      ),
+      headerTitleAlign: 'center',
+      headerTitleStyle: {
+        color: '#2e64e5',
+        fontFamily: 'Kufam-SemiBoldItalic',
+        fontSize: 18,
+      },
+      headerStyle: {
+        shadowColor: '#fff',
+        elevation: 0,
+      },
+    }}>
+    <Stack.Screen
+      name="DisasterKit"
+      component={DisasterKit}
+      options={{
+        title: 'Disaster Emergency Kit',
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={25}
+            onPress={() => navigation.openDrawer()}></Icon>
+        ),
+      }}
+    />
+  </Stack.Navigator>
+);
+
+const EmergencyContactStack = ({navigation}) => (
+  <Stack.Navigator
+    initialRouteName="Profile"
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="ios-menu"
+          backgroundColor="#696969"
+          size={25}></Icon.Button>
+      ),
+      headerTitleAlign: 'center',
+      headerTitleStyle: {
+        color: '#2e64e5',
+        fontFamily: 'Kufam-SemiBoldItalic',
+        fontSize: 18,
+      },
+      headerStyle: {
+        shadowColor: '#fff',
+        elevation: 0,
+      },
+    }}>
+    <Stack.Screen
+      name="Profile"
+      component={EmergencyContact}
+      options={{
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={25}
+            onPress={() => navigation.openDrawer()}></Icon>
+        ),
+      }}
+    />
+    <Stack.Screen
+      name="ProfileInfo"
+      component={AddEmergencyContact}
+      options={{
+        title: 'Profile Details',
+        // headerLeft: () => (
+        //   <Icon
+        //     name="menu"
+        //     size={25}
+        //     onPress={() => navigation.goBack()}></Icon>
+        // ),
       }}
     />
   </Stack.Navigator>
@@ -347,6 +472,36 @@ const AppStack = ({navigation}) => (
             size={35}
             color={focused ? '#7cc' : '#ccc'}
           />
+        ),
+      }}
+    />
+    <Drawer.Screen
+      name="EmergecyContact"
+      component={EmergencyContactStack}
+      options={{
+        title: 'Emergency Contact',
+        drawerIcon: ({focused, size}) => (
+          <Icon name="medkit" size={35} color={focused ? '#7cc' : '#ccc'} />
+        ),
+      }}
+    />
+    <Drawer.Screen
+      name="disasterkit"
+      component={DisasterKitStack}
+      options={{
+        title: 'Disaster Emergency Kit',
+        drawerIcon: ({focused, size}) => (
+          <Icon name="medkit" size={35} color={focused ? '#7cc' : '#ccc'} />
+        ),
+      }}
+    />
+    <Drawer.Screen
+      name="helpline"
+      component={HelpLineStack}
+      options={{
+        title: 'Help Line',
+        drawerIcon: ({focused, size}) => (
+          <Icon name="help" size={35} color={focused ? '#7cc' : '#ccc'} />
         ),
       }}
     />
