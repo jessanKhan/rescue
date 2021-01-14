@@ -345,6 +345,42 @@ const DisasterKitStack = ({navigation}) => (
   </Stack.Navigator>
 );
 
+const SoundPollutionStack = ({navigation}) => (
+  <Stack.Navigator
+    options={{
+      headerLeft: () => (
+        <Icon.Button
+          name="ios-menu"
+          backgroundColor="#696969"
+          size={25}></Icon.Button>
+      ),
+      headerTitleAlign: 'center',
+      headerTitleStyle: {
+        color: '#2e64e5',
+        fontFamily: 'Kufam-SemiBoldItalic',
+        fontSize: 18,
+      },
+      headerStyle: {
+        shadowColor: '#fff',
+        elevation: 0,
+      },
+    }}>
+    <Stack.Screen
+      name="SoundCheck"
+      component={SoundCheck}
+      options={{
+        title: 'Sound Pollution Checker',
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={25}
+            onPress={() => navigation.openDrawer()}></Icon>
+        ),
+      }}
+    />
+  </Stack.Navigator>
+);
+
 const EmergencyContactStack = ({navigation}) => (
   <Stack.Navigator
     initialRouteName="Profile"
@@ -463,7 +499,7 @@ const AppStack = ({navigation}) => (
 
     <Drawer.Screen
       name="Sound"
-      component={SoundCheck}
+      component={SoundPollutionStack}
       options={{
         title: 'Sound Polution',
         drawerIcon: ({focused, size}) => (
