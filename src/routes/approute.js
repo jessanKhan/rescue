@@ -367,7 +367,7 @@ const EmergencyContactStack = ({navigation}) => (
       },
     }}>
     <Stack.Screen
-      name="Profile"
+      name="EmergencyContact"
       component={EmergencyContact}
       options={{
         headerLeft: () => (
@@ -379,10 +379,10 @@ const EmergencyContactStack = ({navigation}) => (
       }}
     />
     <Stack.Screen
-      name="ProfileInfo"
+      name="AddEmergencyContact"
       component={AddEmergencyContact}
       options={{
-        title: 'Profile Details',
+        title: 'Add Emergency Contact',
         // headerLeft: () => (
         //   <Icon
         //     name="menu"
@@ -481,7 +481,7 @@ const AppStack = ({navigation}) => (
       options={{
         title: 'Emergency Contact',
         drawerIcon: ({focused, size}) => (
-          <Icon name="medkit" size={35} color={focused ? '#7cc' : '#ccc'} />
+          <Icon name="mail-open" size={35} color={focused ? '#7cc' : '#ccc'} />
         ),
       }}
     />
