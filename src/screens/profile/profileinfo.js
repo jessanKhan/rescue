@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, ToastAndroid} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import {Formik} from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -46,6 +46,11 @@ const ProfileInfo = (navigations) => {
       })
       .then(() => {
         console.log('User added!');
+        ToastAndroid.showWithGravity(
+          'User Information Updated',
+          ToastAndroid.SHORT,
+          ToastAndroid.BOTTOM,
+        );
       });
   };
 

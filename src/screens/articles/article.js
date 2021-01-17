@@ -11,12 +11,13 @@ import {
 import styles from './styles';
 //PARSING TMLD DATA FROM SERVER RESPONSE
 import WebView from 'react-native-webview';
+// import ArticleList from '../../data/save_env.json';
 
-const SaveEnvironment = ({navigation}) => {
+const SaveEnvironment = (ArticleData) => {
   //FUNCTION EXCLUDING IMG, BR TAGS FROM HTML DATA FROM SERVER RESPONSE
-  const original_url = `https://healtheplanet.com/100-ways-to-heal-the-planet/?gclid=CjwKCAiAz4b_BRBbEiwA5XlVVhKJn3IsIVBLGLVpCIcR4lb7lAAM71iFzBio4cspEcxVv-YVjuw9RRoCAHUQAvD_BwE`;
+  const original_url = ArticleData.route.params.ArticleData.url;
 
-  useEffect(() => console.log('Hello', original_url));
+  useEffect(() => console.log('Hello', ArticleData));
 
   const ActivityIndicatorLoadingView = (props) => {
     return (
@@ -32,10 +33,10 @@ const SaveEnvironment = ({navigation}) => {
     // <ScrollView style={styles.htmlContainer}>
     <WebView
       source={{uri: original_url}}
-      // onShouldStartLoadWithRequest={(request) => {
-      //   // Only allow navigating within this website
-      //   return request.url.startsWith(original_url);
-      // }}
+      onShouldStartLoadWithRequest={(request) => {
+        // Only allow navigating within this website
+        return request.url.startsWith(original_url);
+      }}
       javaScriptEnabled={true}
       domStorageEnabled={true}
       renderLoading={ActivityIndicatorLoadingView}

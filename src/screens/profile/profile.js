@@ -21,20 +21,27 @@ const userDt = {
 const Profile = ({navigation}) => {
   const {user, logout} = useContext(AuthContext);
   const [userdata, setUser] = useState(userDt);
+  const [userId, setUserID] = useState();
   const [loading, setLoading] = useState(true);
   // const usersCollection = firestore().collection('users');
   // const  {logout} =useContext(AuthContext)
   // const navigation = useNavigation();
   async function userDocument() {
-    await firestore()
-      .collection('users')
-      .doc(`${user._user.uid}`)
-      .onSnapshot((data) => setUser(data.data()), setLoading(false));
+    try {
+      await firestore()
+        .collection('users')
+        .doc(`${user._user.uid}`)
+        .onSnapshot((data) => console.log(data));
+    } catch (error) {
+      console.log('Error', error);
+      setUser(userDt);
+    }
   }
 
   useEffect(() => {
+    setUserID();
     userDocument();
-    console.log(userdata);
+    console.log(user._user.uid);
   }, [userdata]);
 
   return (

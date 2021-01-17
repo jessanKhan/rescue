@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons';
 import getWeather from '../../services/weatherService';
 import Geolocation from 'react-native-geolocation-service';
 import styles from './Styles';
+import {AsyncStorage} from '@react-native-community/async-storage';
 
 const initialWeather = {
   coord: {
@@ -77,6 +78,28 @@ const Weather = ({navigation}) => {
     }
   }
 
+  const _getUpdate = async () => {
+    getWeather(lat, lon).then((data) => setResult(data.data));
+    // try {
+
+    //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
+    // } catch (error) {
+    //   // Error saving data
+    // }
+  };
+
+  const _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('TASKS');
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+
   useEffect(() => {
     requestPermissions();
     if (permission) {
@@ -95,7 +118,7 @@ const Weather = ({navigation}) => {
     }
     // getWeather(lat, lon).then((data) => setResult(data.data));
     console.log(Result);
-  }, [requestPermissions]);
+  });
 
   return (
     <View style={styles.current_weather_container}>
@@ -169,6 +192,9 @@ const Weather = ({navigation}) => {
             label="1-2 of 6"
           /> */}
         </DataTable>
+      </View>
+      <View>
+        <Button title="Refresh" onPress={() => _getUpdate()} />
       </View>
     </View>
   );

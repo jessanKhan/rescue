@@ -24,6 +24,7 @@ import Helpline from '../screens/helpline/helpline';
 import DisasterKit from '../screens/disasterkit/disasterkit';
 import EmergencyContact from '../screens/emergencycontact/emegencycontact';
 import AddEmergencyContact from '../screens/emergencycontact/addemegencycontact';
+import ArticleList from '../screens/articles/articleList';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -215,8 +216,8 @@ const SaveEnvironmentStack = ({navigation}) => (
       },
     }}>
     <Stack.Screen
-      name="SaveEnvironment"
-      component={SaveEnvironment}
+      name="SaveEnvironmentList"
+      component={ArticleList}
       options={{
         title: 'Save Environment Guide',
         headerLeft: () => (
@@ -225,6 +226,13 @@ const SaveEnvironmentStack = ({navigation}) => (
             size={25}
             onPress={() => navigation.openDrawer()}></Icon>
         ),
+      }}
+    />
+    <Stack.Screen
+      name="SaveEnvironment"
+      component={SaveEnvironment}
+      options={{
+        title: 'Save Environment Guide Details',
       }}
     />
   </Stack.Navigator>

@@ -36,7 +36,8 @@
     "react-native-screens": "^2.16.1",
     "react-native-sound-level-foreground": "^1.1.1",
     "react-native-vector-icons": "^7.1.0",
-    "react-native-webview": "^9.0.0"
+    "react-native-webview": "^9.0.0",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
