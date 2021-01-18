@@ -164,10 +164,10 @@ const Weather = ({navigation}) => {
             ))}
 
           <Text style={styles.current_weather_status_text_C}>
-            Sunrise:{timefunc(Result.sys.sunset)}
+            Sunrise:{timefunc(Result.sys.sunrise)}
           </Text>
           <Text style={styles.current_weather_status_text_C}>
-            Sunset:{timefunc(Result.sys.sunrise)}
+            Sunset:{timefunc(Result.sys.sunset)}
           </Text>
         </View>
 
