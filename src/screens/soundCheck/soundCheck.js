@@ -64,7 +64,7 @@ const SoundCheck = ({navigation}) => {
         // see "Returned data" section below
         let values = data.value + 100;
         SetLevel(values);
-        console.log('Sound level info', data);
+        console.log('Sound level info', level);
       };
     }
   };

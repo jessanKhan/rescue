@@ -94,7 +94,7 @@ const Volunteer = ({navigation}) => {
             <Text style={styles.info}>Volunteer List</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.item}
           onPress={() => navigation.navigate('VolunteerNear')}>
           <View style={styles.iconContent}>
@@ -103,7 +103,7 @@ const Volunteer = ({navigation}) => {
           <View style={styles.infoContent}>
             <Text style={styles.info}>Volunteer Near Me</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

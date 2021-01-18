@@ -490,7 +490,7 @@ const AppStack = ({navigation}) => (
       name="ArticleDays"
       component={WorldDayStack}
       options={{
-        title: 'World Environment',
+        title: 'World Environments',
         drawerIcon: ({focused, size}) => (
           <Icon name="globe" size={35} color={focused ? '#7cc' : '#ccc'} />
         ),

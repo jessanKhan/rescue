@@ -78,6 +78,26 @@ const Weather = ({navigation}) => {
     }
   }
 
+  const timefunc = (timestamp) => {
+    let unix_timestamp = timestamp;
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    var date = new Date(unix_timestamp * 1000);
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    // Minutes part from the timestamp
+    var minutes = '0' + date.getMinutes();
+    // Seconds part from the timestamp
+    var seconds = '0' + date.getSeconds();
+
+    // Will display time in 10:30:23 format
+    var formattedTime =
+      hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+    console.log(formattedTime);
+    return formattedTime;
+  };
+
   const _getUpdate = async () => {
     getWeather(lat, lon).then((data) => setResult(data.data));
     // try {
@@ -132,7 +152,7 @@ const Weather = ({navigation}) => {
             {Result.main.temp}º
           </Text>
           <Text style={styles.current_weather_status_text_B}>
-            {Result.name}
+            {Result.name},{Result.sys.country}
           </Text>
           {Result.weather?.length > 0 &&
             Result.weather.map((weathers) => (
@@ -142,12 +162,23 @@ const Weather = ({navigation}) => {
                 {weathers.main}
               </Text>
             ))}
+
+          <Text style={styles.current_weather_status_text_C}>
+            Sunrise:{timefunc(Result.sys.sunset)}
+          </Text>
+          <Text style={styles.current_weather_status_text_C}>
+            Sunset:{timefunc(Result.sys.sunrise)}
+          </Text>
         </View>
+
         <View>
-          <Image
-            style={styles.current_weather_status_image}
-            source={require('../../assets/googleweather.gif')}
-          />
+          {Result.weather?.length > 0 &&
+            Result.weather.map((weathers) => (
+              <Image
+                style={styles.current_weather_status_image}
+                source={require('../../assets/googleweather.gif')}
+              />
+            ))}
         </View>
       </View>
 
