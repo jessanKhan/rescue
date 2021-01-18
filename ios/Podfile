@@ -12,6 +12,10 @@ target 'rescue' do
 
   pod 'RNSoundLevel', :path => '../node_modules/react-native-sound-level-foreground'
 
+  pod 'react-native-sms', :path => '../node_modules/react-native-sms'
+
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
   target 'rescueTests' do
     inherit! :complete
     # Pods for testing

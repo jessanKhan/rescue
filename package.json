@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/google-signin": "^5.0.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^10.4.0",
@@ -34,6 +35,7 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.16.1",
+    "react-native-sms": "^1.11.0",
     "react-native-sound-level-foreground": "^1.1.1",
     "react-native-vector-icons": "^7.1.0",
     "react-native-webview": "^9.0.0",

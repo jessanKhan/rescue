@@ -7,6 +7,7 @@ import styles from './Styles.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 import firestore from '@react-native-firebase/firestore';
 import SendSMS from 'react-native-sms';
+import Geolocation from '@react-native-community/geolocation';
 
 const userDt = {
   name: 'Your Name',
@@ -17,7 +18,8 @@ const EmergencyContact = ({navigation}) => {
   const {user, logout} = useContext(AuthContext);
   const [userdata, setUser] = useState(userDt);
   const [numbers, setNumbers] = useState();
-  const [loading, setLoading] = useState(true);
+  const [relation, setRelation] = useState();
+  const [location, setLocation] = useState(true);
   // const usersCollection = firestore().collection('users');
   // const  {logout} =useContext(AuthContext)
   // const navigation = useNavigation();
@@ -27,43 +29,48 @@ const EmergencyContact = ({navigation}) => {
         .collection('emergency')
         .doc(`${user._user.uid}`)
         .collection('emergency_contact')
-        .onSnapshot((data) => setNumbers(Object.entries(data._docs)));
+        .onSnapshot((data) =>
+          setNumbers(data._docs.map((data) => data._data.phone)),
+        );
     } catch (error) {
       console.log('Error', error);
       setUser(userDt);
     }
   }
 
-  SendSMS.send(
-    {
-      body: 'The default body of the SMS!',
-      recipients: ['0123456789', '9876543210'],
-      successTypes: ['sent', 'queued'],
-      allowAndroidSendWithoutReadPermission: true,
-      attachment: attachment,
-    },
-    (completed, cancelled, error) => {
-      console.log(
-        'SMS Callback: completed: ' +
-          completed +
-          ' cancelled: ' +
-          cancelled +
-          'error: ' +
-          error,
-      );
-    },
-  );
+  const someFunction = () => {
+    // userDocument();
+    SendSMS.send(
+      {
+        body: `Hey, I am in danger, Here I am sending you my location co-ordinates, please help me!!!.\n Latitude:${location.coords.latitude}, Longitude:${location.coords.longitude}`,
+        recipients: numbers,
+        successTypes: ['sent', 'queued'],
+        allowAndroidSendWithoutReadPermission: true,
+      },
+      (completed, cancelled, error) => {
+        console.log(
+          'SMS Callback: completed: ' +
+            completed +
+            ' cancelled: ' +
+            cancelled +
+            'error: ' +
+            error,
+        );
+      },
+    );
+  };
 
   useEffect(() => {
+    Geolocation.getCurrentPosition((info) => setLocation(info));
     // setUserID();
     userDocument();
-    console.log(numbers);
-  }, [userdata]);
+    console.log('numbers', numbers);
+  }, [numbers]);
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => someFunction()}>
           <View style={styles.headerContent}>
             <Image
               style={styles.avatar}
