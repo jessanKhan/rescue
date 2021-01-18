@@ -25,6 +25,7 @@ import DisasterKit from '../screens/disasterkit/disasterkit';
 import EmergencyContact from '../screens/emergencycontact/emegencycontact';
 import AddEmergencyContact from '../screens/emergencycontact/addemegencycontact';
 import ArticleList from '../screens/articles/articleList';
+import EmergencyContactList from '../screens/emergencycontact/emergencycontactlist';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -427,12 +428,13 @@ const EmergencyContactStack = ({navigation}) => (
       component={AddEmergencyContact}
       options={{
         title: 'Add Emergency Contact',
-        // headerLeft: () => (
-        //   <Icon
-        //     name="menu"
-        //     size={25}
-        //     onPress={() => navigation.goBack()}></Icon>
-        // ),
+      }}
+    />
+    <Stack.Screen
+      name="EmergencyContactList"
+      component={EmergencyContactList}
+      options={{
+        title: 'Emergency Contacts',
       }}
     />
   </Stack.Navigator>

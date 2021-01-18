@@ -31,7 +31,7 @@ const Profile = ({navigation}) => {
       await firestore()
         .collection('users')
         .doc(`${user._user.uid}`)
-        .onSnapshot((data) => console.log(data));
+        .onSnapshot((data) => setUser(data._data));
     } catch (error) {
       console.log('Error', error);
       setUser(userDt);
