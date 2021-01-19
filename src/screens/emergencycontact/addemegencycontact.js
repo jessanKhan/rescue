@@ -49,7 +49,7 @@ const AddEmergencyContact = (navigations) => {
       .then(() => {
         console.log('Contact ADDED!');
         ToastAndroid.showWithGravity(
-          'Contact',
+          'Contact Added Successfully',
           ToastAndroid.SHORT,
           ToastAndroid.BOTTOM,
         );

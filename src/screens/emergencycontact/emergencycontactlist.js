@@ -57,26 +57,29 @@ const EmergencyContactList = ({params}) => {
     }
   }
 
+  // async function _deleteContacts(name) {
+  //   try {
+  //     await firestore()
+  //       .collection('emergency')
+  //       .doc(`${user._user.uid}`)
+  //       .collection('emergency_contact')
+  //       .where('name' == {name})
+  //       .delete();
+  //   } catch (error) {
+  //     console.log('Error', error);
+  //     setUser(userDt);
+  //   }
+  // }
+
   useEffect(() => {
-    // _getContacts();
-    console.log(state);
+    _getContacts();
+    console.log(userdata);
   }, []);
 
   return (
     <ScrollView>
-      {/* {userdata?.length > 0 &&
-        userdata.map((userdata) => (
-          <View>
-            <Text style={styles.name}>Name: {userdata._data.name}</Text>
-
-            <Text style={styles.userInfo}>Phone:{userdata._data.phone}</Text>
-            <Text style={styles.userInfo}>
-              Address: {userdata._data.relation}
-            </Text>
-          </View>
-        ))} */}
       {userdata?.length > 0 &&
-        userdata.map((data) => (
+        userdata.map((data, index) => (
           <View style={styles.box}>
             <Image
               style={styles.image}
@@ -91,6 +94,19 @@ const EmergencyContactList = ({params}) => {
               <Text style={styles.userInfo}>
                 Address: {data._data.relation}
               </Text>
+              {/* <View style={styles.buttons}>
+                <TouchableHighlight
+                  style={[styles.button, styles.view]}
+                  onPress={() => _deleteContacts('babu')}>
+                  <Image
+                    style={styles.icon}
+                    source={{
+                      uri:
+                        'https://img.icons8.com/color/70/000000/filled-like.png',
+                    }}
+                  />
+                </TouchableHighlight>
+              </View> */}
             </View>
           </View>
         ))}

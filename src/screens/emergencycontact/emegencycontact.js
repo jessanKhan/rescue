@@ -38,8 +38,9 @@ const EmergencyContact = ({navigation}) => {
     }
   }
 
-  const someFunction = () => {
-    // userDocument();
+  const someFunction = async () => {
+    await userDocument();
+    await Geolocation.getCurrentPosition((info) => setLocation(info));
     SendSMS.send(
       {
         body: `Hey, I am in danger, Here I am sending you my location co-ordinates, please help me!!!.\n Latitude:${location.coords.latitude}, Longitude:${location.coords.longitude}`,
@@ -61,11 +62,11 @@ const EmergencyContact = ({navigation}) => {
   };
 
   useEffect(() => {
-    Geolocation.getCurrentPosition((info) => setLocation(info));
+    // Geolocation.getCurrentPosition((info) => setLocation(info));
     // setUserID();
-    userDocument();
+    // userDocument();
     console.log('numbers', numbers);
-  }, [numbers]);
+  }, []);
 
   return (
     <View style={styles.container}>
