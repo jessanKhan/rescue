@@ -13,7 +13,6 @@ import {
   Image,
 } from 'react-native';
 import {DataTable} from 'react-native-paper';
-import Icon from 'react-native-vector-icons';
 import getWeather from '../../services/weatherService';
 import Geolocation from 'react-native-geolocation-service';
 import styles from './Styles';
@@ -64,7 +63,6 @@ const initialWeather = {
 
 const Weather = ({navigation}) => {
   const [Result, setResult] = useState(initialWeather);
-  const [location, setLocation] = useState();
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
   const [permission, setPermission] = useState(false);
@@ -100,12 +98,6 @@ const Weather = ({navigation}) => {
 
   const _getUpdate = async () => {
     getWeather(lat, lon).then((data) => setResult(data.data));
-    // try {
-
-    //   await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
-    // } catch (error) {
-    //   // Error saving data
-    // }
   };
 
   const _retrieveData = async () => {
@@ -145,9 +137,6 @@ const Weather = ({navigation}) => {
       {/* Wather Status a nd Iamge Block */}
       <View style={styles.current_weather_contant}>
         <View style={styles.current_weather_status}>
-          {/* <Text style={styles.current_weather_status_text_A}>
-            {Result.main.temp}º
-          </Text> */}
           <Text style={styles.current_weather_status_text_A}>
             {Result.main.temp}º
           </Text>

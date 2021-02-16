@@ -23,15 +23,15 @@ const Profile = ({navigation}) => {
   const [userdata, setUser] = useState(userDt);
   const [userId, setUserID] = useState();
   const [loading, setLoading] = useState(true);
-  // const usersCollection = firestore().collection('users');
-  // const  {logout} =useContext(AuthContext)
-  // const navigation = useNavigation();
+
   async function userDocument() {
     try {
       await firestore()
         .collection('users')
         .doc(`${user._user.uid}`)
-        .onSnapshot((data) => setUser(data._data));
+        .onSnapshot((data) =>
+          data._data == !undefined ? setUser(data._data) : setUser(userDt),
+        );
     } catch (error) {
       console.log('Error', error);
       setUser(userDt);
@@ -39,9 +39,10 @@ const Profile = ({navigation}) => {
   }
 
   useEffect(() => {
-    setUserID();
+    // setUserID();
     userDocument();
     console.log(user._user.uid);
+    console.log(userdata);
   }, [userdata]);
 
   return (
@@ -85,48 +86,6 @@ const Profile = ({navigation}) => {
           </View>
           {/* </View> */}
         </TouchableOpacity>
-        {/* <TouchableOpacity style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri:
-                  'https://img.icons8.com/color/70/000000/administrator-male.png',
-              }}
-            />
-          </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>Settings</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri: 'https://img.icons8.com/color/70/000000/filled-like.png',
-              }}
-            />
-          </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>News</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri: 'https://img.icons8.com/color/70/000000/facebook-like.png',
-              }}
-            />
-          </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>Shop</Text>
-          </View>
-        </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.item} onPress={() => logout()}>
           <View style={styles.iconContent}>

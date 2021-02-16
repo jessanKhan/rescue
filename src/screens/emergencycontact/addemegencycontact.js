@@ -1,12 +1,12 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {View, Text, ScrollView, ToastAndroid} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import {Formik} from 'formik';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 import {AuthContext} from '../../routes/authprovider';
 
 const AddEmergencyContact = (navigations) => {
+  const [id, setId] = useState();
   const {user} = useContext(AuthContext);
   const onSubmit = (values) => {
     addOnId(values);
@@ -33,6 +33,7 @@ const AddEmergencyContact = (navigations) => {
     for (var i = 0; i < 15; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
+    setId(result);
     return result;
   }
   const addOnId = (values) => {
@@ -40,11 +41,12 @@ const AddEmergencyContact = (navigations) => {
       .collection('emergency')
       .doc(`${user._user.uid}`)
       .collection(`emergency_contact`)
-      .doc(`${makeid()}`)
+      .doc(id)
       .set({
         relation: values.relation,
         name: values.name,
         phone: values.phone,
+        id: id,
       })
       .then(() => {
         console.log('Contact ADDED!');
@@ -56,9 +58,9 @@ const AddEmergencyContact = (navigations) => {
       });
   };
 
-  //   useEffect(() => {
-  //     console.log(user._user);
-  //   });
+  useEffect(() => {
+    setId(makeid());
+  }, []);
 
   return (
     <ScrollView>
@@ -69,8 +71,6 @@ const AddEmergencyContact = (navigations) => {
           <View>
             <Input
               placeholder="Name"
-              //leftIcon={<Icon name="user" size={24} color="black" />}
-              // style={styles}
               onChangeText={handleChange('name')}
               onBlur={handleBlur('name')}
               value={values.name}

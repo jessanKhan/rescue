@@ -57,14 +57,13 @@ const EmergencyContactList = ({params}) => {
     }
   }
 
-  // async function _deleteContacts(name) {
+  // async function removeContact() {
   //   try {
   //     await firestore()
   //       .collection('emergency')
   //       .doc(`${user._user.uid}`)
   //       .collection('emergency_contact')
-  //       .where('name' == {name})
-  //       .delete();
+  //       .onSnapshot((data) => setUser(data._docs));
   //   } catch (error) {
   //     console.log('Error', error);
   //     setUser(userDt);
@@ -78,7 +77,7 @@ const EmergencyContactList = ({params}) => {
 
   return (
     <ScrollView>
-      {userdata?.length > 0 &&
+      {userdata?.length > 0 ? (
         userdata.map((data, index) => (
           <View style={styles.box}>
             <Image
@@ -89,32 +88,31 @@ const EmergencyContactList = ({params}) => {
             />
             <View style={styles.boxContent}>
               <Text style={styles.title}>{data._data.name}</Text>
-
               <Text style={styles.userInfo}>Phone:{data._data.phone} </Text>
               <Text style={styles.userInfo}>
                 Address: {data._data.relation}
               </Text>
-              {/* <View style={styles.buttons}>
-                <TouchableHighlight
-                  style={[styles.button, styles.view]}
-                  onPress={() => _deleteContacts('babu')}>
-                  <Image
-                    style={styles.icon}
-                    source={{
-                      uri:
-                        'https://img.icons8.com/color/70/000000/filled-like.png',
-                    }}
-                  />
-                </TouchableHighlight>
-              </View> */}
             </View>
+            {/* <View>
+              <Button title="remove" onPress={() => removeContact()} />
+            </View> */}
           </View>
-        ))}
+        ))
+      ) : (
+        <Text style={styles.noContact}>No Contact Added</Text>
+      )}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  noContact: {
+    alignSelf: 'center',
+    color: 'grey',
+    paddingTop: '10%',
+    fontFamily: 'Ariel',
+    fontSize: 20,
+  },
   image: {
     width: 100,
     height: 100,

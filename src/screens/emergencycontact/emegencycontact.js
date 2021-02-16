@@ -7,7 +7,7 @@ import styles from './Styles.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 import firestore from '@react-native-firebase/firestore';
 import SendSMS from 'react-native-sms';
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 
 const userDt = {
   name: 'Your Name',
@@ -15,14 +15,11 @@ const userDt = {
   relation: 'Your relation',
 };
 const EmergencyContact = ({navigation}) => {
-  const {user, logout} = useContext(AuthContext);
-  const [userdata, setUser] = useState(userDt);
+  const {user} = useContext(AuthContext);
+
   const [numbers, setNumbers] = useState();
-  const [relation, setRelation] = useState();
   const [location, setLocation] = useState(true);
-  // const usersCollection = firestore().collection('users');
-  // const  {logout} =useContext(AuthContext)
-  // const navigation = useNavigation();
+
   async function userDocument() {
     try {
       await firestore()
@@ -60,13 +57,6 @@ const EmergencyContact = ({navigation}) => {
       },
     );
   };
-
-  useEffect(() => {
-    // Geolocation.getCurrentPosition((info) => setLocation(info));
-    // setUserID();
-    // userDocument();
-    console.log('numbers', numbers);
-  }, []);
 
   return (
     <View style={styles.container}>
