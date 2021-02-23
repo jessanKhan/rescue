@@ -27,7 +27,7 @@ const userDt = [
 const EmergencyContactList = ({params}) => {
   const [state, setState] = useState();
   //   const volunteerList = firestore().collection('volunteer').get();
-  const [userdata, setUser] = useState(userDt);
+  const [userdata, setUser] = useState();
   const {user} = useContext(AuthContext);
   //   async function getVolunteer() {
   //     var volunteerList = [];
@@ -44,20 +44,7 @@ const EmergencyContactList = ({params}) => {
   //     return volunteerList;
   //   }
 
-  async function _getContacts() {
-    try {
-      await firestore()
-        .collection('emergency')
-        .doc(`${user._user.uid}`)
-        .collection('emergency_contact')
-        .onSnapshot((data) => setUser(data._docs));
-    } catch (error) {
-      console.log('Error', error);
-      setUser(userDt);
-    }
-  }
-
-  // async function removeContact() {
+  // async function _getContacts() {
   //   try {
   //     await firestore()
   //       .collection('emergency')
@@ -69,6 +56,34 @@ const EmergencyContactList = ({params}) => {
   //     setUser(userDt);
   //   }
   // }
+
+  async function _getContacts() {
+    try {
+      await firestore()
+        .collection('emergency')
+        .where('id', '==', user._user.uid)
+        .get()
+        .then((querySnapshot) => {
+          setUser(querySnapshot._docs);
+        });
+    } catch (error) {
+      console.log('Error', error);
+      setUser(userDt);
+    }
+  }
+
+  async function removeContact(doc_id, index) {
+    try {
+      await firestore()
+        .collection('emergency')
+        .doc(`${doc_id}`)
+        .delete()
+        .then(_getContacts());
+    } catch (error) {
+      console.log('Error', error);
+      setUser(userDt);
+    }
+  }
 
   useEffect(() => {
     _getContacts();
@@ -90,12 +105,15 @@ const EmergencyContactList = ({params}) => {
               <Text style={styles.title}>{data._data.name}</Text>
               <Text style={styles.userInfo}>Phone:{data._data.phone} </Text>
               <Text style={styles.userInfo}>
-                Address: {data._data.relation}
+                Relation: {data._data.relation}
               </Text>
             </View>
-            {/* <View>
-              <Button title="remove" onPress={() => removeContact()} />
-            </View> */}
+            <View>
+              <Button
+                title="remove"
+                onPress={() => removeContact(data._data.docid, index)}
+              />
+            </View>
           </View>
         ))
       ) : (

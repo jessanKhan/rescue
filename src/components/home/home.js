@@ -1,17 +1,7 @@
-import React, {useContext} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Alert,
-  ScrollView,
-  FlatList,
-} from 'react-native';
-import {Button} from 'react-native-elements';
+import React from 'react';
+import {Text, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+
 import Icon from 'react-native-vector-icons/Ionicons';
-// import {AuthContext} from '../../routes/authprovider';
 
 const data = [
   {
@@ -21,49 +11,49 @@ const data = [
     route: 'Profile',
   },
   {
-    id: 1,
+    id: 2,
     title: 'Weather Info',
     image: 'cloudy-night',
     route: 'Weather',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Sound Polution',
     image: 'mic-circle-outline',
     route: 'Sound',
   },
   {
-    id: 3,
+    id: 4,
     title: 'World Environment',
     image: 'globe',
     route: 'ArticleDays',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Save Environment',
     image: 'book',
     route: 'Article',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Emergency Contact',
     image: 'mail-open',
     route: 'EmergecyContact',
   },
   {
-    id: 5,
+    id: 7,
     title: 'Volunteers',
     image: 'help-buoy',
     route: 'Volunteer',
   },
   {
-    id: 6,
+    id: 8,
     title: 'Disaster Kit',
     image: 'medkit',
     route: 'disasterkit',
   },
   {
-    id: 8,
+    id: 9,
     title: 'Help Line',
     image: 'help',
     route: 'helpline',
@@ -95,7 +85,7 @@ const Home = ({navigation}) => {
                   clickEventListener(item);
                 }}>
                 {/* <Image style={styles.cardImage} source={{uri: item.image}} /> */}
-                <Icon name={item.image} size={45} color="#7cc" />
+                <Icon name={item.image} size={35} color="#7cc" />
               </TouchableOpacity>
 
               <View style={styles.cardHeader}>
@@ -139,8 +129,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     backgroundColor: '#e2e2e2',
     //flexBasis: '42%',
-    width: 120,
-    height: 120,
+    width: 90,
+    height: 90,
     borderRadius: 60,
     alignItems: 'center',
     justifyContent: 'center',
@@ -173,7 +163,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
     flex: 1,
     alignSelf: 'center',
     color: '#696969',

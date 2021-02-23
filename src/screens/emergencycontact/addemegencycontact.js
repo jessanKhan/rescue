@@ -36,17 +36,38 @@ const AddEmergencyContact = (navigations) => {
     setId(result);
     return result;
   }
+  // const addOnId = (values) => {
+  //   firestore()
+  //     .collection('emergency')
+  //     .doc(`${user._user.uid}`)
+  //     .collection(`emergency_contact`)
+  //     .doc(id)
+  //     .set({
+  //       relation: values.relation,
+  //       name: values.name,
+  //       phone: values.phone,
+  //       id: id,
+  //     })
+  //     .then(() => {
+  //       console.log('Contact ADDED!');
+  //       ToastAndroid.showWithGravity(
+  //         'Contact Added Successfully',
+  //         ToastAndroid.SHORT,
+  //         ToastAndroid.BOTTOM,
+  //       );
+  //     });
+  // };
+
   const addOnId = (values) => {
     firestore()
       .collection('emergency')
-      .doc(`${user._user.uid}`)
-      .collection(`emergency_contact`)
       .doc(id)
       .set({
         relation: values.relation,
         name: values.name,
         phone: values.phone,
-        id: id,
+        id: user._user.uid,
+        docid: id,
       })
       .then(() => {
         console.log('Contact ADDED!');

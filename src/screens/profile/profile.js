@@ -71,7 +71,7 @@ const Profile = ({navigation}) => {
       <View style={styles.body}>
         <TouchableOpacity
           style={styles.item}
-          onPress={() => navigation.navigate('ProfileInfo')}>
+          onPress={() => navigation.navigate('ProfileInfo', userdata)}>
           {/* <View style={styles.item}> */}
           <View style={styles.iconContent}>
             <Image

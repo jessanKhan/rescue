@@ -5,6 +5,7 @@ import {Input, Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AuthContext} from '../../routes/authprovider';
 import * as yup from 'yup';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Login = ({navigation}) => {
   const {login} = useContext(AuthContext);
@@ -42,7 +43,7 @@ const Login = ({navigation}) => {
             <Input
               placeholder="Email"
               leftIcon={<Icon name="envelope-open" size={24} color="black" />}
-              // style={styles}
+              style={{fontSize: 14}}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
               value={values.email}
@@ -52,13 +53,18 @@ const Login = ({navigation}) => {
             )}
             <Input
               placeholder="Password"
+              style={{fontSize: 14}}
               secureTextEntry={true}
               leftIcon={<Icon name="key" size={24} color="black" />}
-              // style={styles}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               value={values.password}
             />
+            <TouchableOpacity
+              style={{paddingLeft: 15}}
+              onPress={() => navigation.navigate('ForgotPassword?')}>
+              <Text>Forgot Password ?</Text>
+            </TouchableOpacity>
             {errors.password && touched.password && (
               <Text style={{fontSize: 13, color: 'red'}}>
                 {errors.password}
@@ -66,7 +72,7 @@ const Login = ({navigation}) => {
             )}
             <View
               style={{
-                width: 200,
+                width: 120,
                 height: 60,
                 marginTop: 30,
                 alignSelf: 'center',
@@ -74,13 +80,14 @@ const Login = ({navigation}) => {
               <Button
                 onPress={handleSubmit}
                 title="Login"
+                titleStyle={{fontSize: 14}}
                 disabled={!isValid}
               />
             </View>
           </View>
         )}
       </Formik>
-      <View
+      {/* <View
         style={{
           // flexDirection: 'column',
           justifyContent: 'center',
@@ -95,6 +102,29 @@ const Login = ({navigation}) => {
           title="SignUp"
           onPress={() => navigation.navigate('Signup')}
         />
+      </View> */}
+      <View
+        style={{
+          justifyContent: 'center',
+          marginTop: 30,
+          alignSelf: 'center',
+        }}>
+        <Text> Don't have any account? </Text>
+        <View
+          style={{
+            // flexDirection: 'column',
+            justifyContent: 'center',
+            width: 120,
+            height: 50,
+            alignSelf: 'center',
+          }}>
+          <Button
+            type="outline"
+            title="SignUp"
+            titleStyle={{fontSize: 14}}
+            onPress={() => navigation.navigate('Signup')}
+          />
+        </View>
       </View>
     </View>
   );
