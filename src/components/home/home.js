@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+// import Newsapi from 'newsapi';
+import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const data = [
+  // {
+  //   id: 1,
+  //   title: 'News Feeds',
+  //   image: 'newspaper',
+  //   route: 'NewsStack',
+  // },
   {
     id: 1,
     title: 'Profile',
@@ -61,9 +69,34 @@ const data = [
 ];
 
 const Home = ({navigation}) => {
+  // const newsApi = Newsapi('40f074db59354f7a8bcacf878bdae154');
+  const [newsData, setNewsData] = useState();
   const clickEventListener = (item) => {
     navigation.navigate(item.route);
   };
+
+  // const getNews = async () => {
+  //   await newsApi.v2
+  //     .everything({
+  //       sources: 'bbc-news,the-verge',
+  //       q: 'environment',
+  //       category: 'environment',
+  //       language: 'en',
+  //       country: 'us',
+  //     })
+  //     .then((res) => setNewsData(res));
+  // };
+
+  useEffect(() => {
+    axios
+      .get(
+        'https://newsapi.org/v2/everything?q=weather&from=2021-02-27&sortBy=publishedAt&apiKey=40f074db59354f7a8bcacf878bdae154',
+      )
+      .then((res) => {
+        setNewsData(res);
+        console.log(res);
+      });
+  }, []);
 
   return (
     <View style={styles.container}>

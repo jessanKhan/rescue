@@ -25,37 +25,8 @@ const userDt = [
   },
 ];
 const EmergencyContactList = ({params}) => {
-  const [state, setState] = useState();
-  //   const volunteerList = firestore().collection('volunteer').get();
   const [userdata, setUser] = useState();
   const {user} = useContext(AuthContext);
-  //   async function getVolunteer() {
-  //     var volunteerList = [];
-  //     var snapshot = await firebase
-  //       .firestore()
-  //       .collection('volunteer')
-  //       .get()
-  //       .then((doc) => console.log(doc));
-
-  //     snapshot.forEach((doc) => {
-  //       volunteerList.push(doc.data());
-  //     });
-
-  //     return volunteerList;
-  //   }
-
-  // async function _getContacts() {
-  //   try {
-  //     await firestore()
-  //       .collection('emergency')
-  //       .doc(`${user._user.uid}`)
-  //       .collection('emergency_contact')
-  //       .onSnapshot((data) => setUser(data._docs));
-  //   } catch (error) {
-  //     console.log('Error', error);
-  //     setUser(userDt);
-  //   }
-  // }
 
   async function _getContacts() {
     try {

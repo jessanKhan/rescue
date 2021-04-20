@@ -12,6 +12,7 @@ export default class NewsDataSeervice {
   //         .then(data => data.result) //GET ITEMS ARRAY
   //     return data
   // }
+  // 'https://newsapi.org/v2/everything?q=tesla&from=2021-02-27&sortBy=publishedAt&apiKey=40f074db59354f7a8bcacf878bdae154';
 
   async getNews() {
     const data = await fetch(
@@ -34,33 +35,20 @@ export default class NewsDataSeervice {
 
     console.log(data);
   }
-
-  async getAnalyticDataEN() {
-    const apiKeynewsApi = '40f074db59354f7a8bcacf878bdae154';
-    const apiKey = 'yo4VyQrTlXiNHQ0nXP-Yy45ggSg67bIDUoOvBqfK';
+  async getNewsAPI() {
     const data = await fetch(
-      `https://api.predicthq.com/v1/events/?category=disasters%2Csevere-weather&limit=40&offset=0`,
+      'https://newsapi.org/v2/everything?q=tesla&from=2021-02-27&sortBy=publishedAt&apiKey=40f074db59354f7a8bcacf878bdae154',
       {
-        method: 'post',
-        headers: new Headers({
-          Authorization: 'Bearer ' + apiKey,
-          Accept: 'application/json',
-        }),
+        method: 'GET',
       },
-    );
-    let returnData = await data.json();
-    console.log('JJJJJJJPP', returnData);
-    // let dataList = {}
-    // let mainResultData = returnData.result;
-    // for (let i = mainResultData.length; i>0; i--){
-    //     console.log("JJJJJJJFFF", mainResultData[i])
-    // }
+    )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
-    // let reverseData = Object.entries(returnData.result);
-    // reverseData = reverseData.reverse();
-    // reverseData = { ...reverseData }
-    // console.log("JJJJJJJ", reverseData)
-    // return reverseData;
-    return returnData.result;
+    console.log(data);
   }
 }

@@ -26,6 +26,7 @@ import EmergencyContact from '../screens/emergencycontact/emegencycontact';
 import AddEmergencyContact from '../screens/emergencycontact/addemegencycontact';
 import ArticleList from '../screens/articles/articleList';
 import EmergencyContactList from '../screens/emergencycontact/emergencycontactlist';
+import NewsFeeds from '../screens/feeds/feeds';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -78,6 +79,38 @@ const WeatherStack = ({navigation}) => {
         name="Weather"
         component={Weather}
         options={{
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={25}
+              onPress={() => navigation.openDrawer()}></Icon>
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const NewsStack = ({navigation}) => {
+  return (
+    <Stack.Navigator
+      options={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: '#2e64e5',
+          fontFamily: 'Kufam-SemiBoldItalic',
+          fontSize: 18,
+        },
+        headerStyle: {
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}>
+      <Stack.Screen
+        name="NewsFeeds"
+        component={NewsFeeds}
+        options={{
+          title: 'News Feeds',
           headerLeft: () => (
             <Icon
               name="menu"
@@ -452,6 +485,16 @@ const AppStack = ({navigation}) => (
         ),
       }}
     />
+    {/* <Drawer.Screen
+      name="NewsStack"
+      component={NewsStack}
+      options={{
+        title: 'News Feeds',
+        drawerIcon: ({focused, size}) => (
+          <Icon name="newspaper" size={35} color={focused ? '#7cc' : '#ccc'} />
+        ),
+      }}
+    /> */}
     <Drawer.Screen
       name="Profile"
       component={ProfileStack}

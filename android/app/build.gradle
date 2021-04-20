@@ -102,7 +102,7 @@ def enableProguardInReleaseBuilds = false
 public class Version { 
     private final static int VERSION_BUILD = 0; //2 0
     private final static int VERSION_MAJOR = 0; //2 1
-    private final static int VERSION_MINOR = 1; //8 98
+    private final static int VERSION_MINOR = 3; //8 98
     public static int getVersionCode() { 
         return VERSION_BUILD*1000*1000 + VERSION_MAJOR * 1000 + VERSION_MINOR; 
         // return 2002009;

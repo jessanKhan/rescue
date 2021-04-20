@@ -79,16 +79,16 @@ const ProfileInfo = ({navigations, route}) => {
   return (
     <ScrollView>
       <Formik
-        initialValues={
-          ({address: address},
-          {district: district},
-          {division: division},
-          {name: name},
-          {phone: phone},
-          {police_station: police_station},
-          {post_office: post_office},
-          {union: union})
-        }
+        initialValues={{
+          address: address,
+          district: district,
+          division: division,
+          name: name,
+          phone: phone,
+          police_station: police_station,
+          post_office: post_office,
+          union: union,
+        }}
         onSubmit={(values) => onSubmit(values)}>
         {({handleChange, handleBlur, handleSubmit, values}) => (
           <View>

@@ -24,14 +24,12 @@ const Profile = ({navigation}) => {
   const [userId, setUserID] = useState();
   const [loading, setLoading] = useState(true);
 
-  async function userDocument() {
+  async function userDocument(user) {
     try {
       await firestore()
         .collection('users')
-        .doc(`${user._user.uid}`)
-        .onSnapshot((data) =>
-          data._data == !undefined ? setUser(data._data) : setUser(userDt),
-        );
+        .doc(`${user}`)
+        .onSnapshot((data) => setUser(data._data));
     } catch (error) {
       console.log('Error', error);
       setUser(userDt);
@@ -39,11 +37,8 @@ const Profile = ({navigation}) => {
   }
 
   useEffect(() => {
-    // setUserID();
-    userDocument();
-    console.log(user._user.uid);
-    console.log(userdata);
-  }, [userdata]);
+    userDocument(user._user.uid);
+  });
 
   return (
     <View style={styles.container}>

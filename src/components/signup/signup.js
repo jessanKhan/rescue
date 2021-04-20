@@ -14,6 +14,7 @@ const SignUp = ({navigation}) => {
 
   const {register} = useContext(AuthContext);
   const loginValidationSchema = yup.object().shape({
+    // displayName: yup.string().required('Username is Required'),
     email: yup
       .string()
       .email('Please enter valid email')
@@ -40,6 +41,14 @@ const SignUp = ({navigation}) => {
           touched,
         }) => (
           <View>
+            {/* <Input
+              placeholder="Username"
+              leftIcon={<Icon name="user" size={24} color="black" />}
+              style={{fontSize: 14}}
+              onChangeText={handleChange('displayName')}
+              onBlur={handleBlur('displayName')}
+              value={values.displayName}
+            /> */}
             <Input
               placeholder="Email"
               leftIcon={<Icon name="envelope-open" size={24} color="black" />}

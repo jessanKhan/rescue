@@ -66,6 +66,7 @@ const Weather = ({navigation}) => {
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
   const [permission, setPermission] = useState(false);
+  const [isData, setIsData] = useState(false);
 
   async function requestPermissions() {
     if (Platform.OS === 'android') {
@@ -128,6 +129,7 @@ const Weather = ({navigation}) => {
         {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
       );
     }
+
     // getWeather(lat, lon).then((data) => setResult(data.data));
     console.log(Result);
   });
@@ -202,15 +204,6 @@ const Weather = ({navigation}) => {
             <DataTable.Cell>Humidity</DataTable.Cell>
             <DataTable.Cell numeric>{Result.main.humidity}</DataTable.Cell>
           </DataTable.Row>
-
-          {/* <DataTable.Pagination
-            page={1}
-            numberOfPages={3}
-            onPageChange={(page) => {
-              console.log(page);
-            }}
-            label="1-2 of 6"
-          /> */}
         </DataTable>
       </View>
       <View>
